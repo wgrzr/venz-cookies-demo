@@ -1,10 +1,19 @@
-import { Info, LucideIcon, MoonStar, Sun } from 'lucide-react-native';
-import { cssInterop } from 'nativewind';
-
+import {
+  Cookie,
+  Info,
+  LucideIcon,
+  MoonStar,
+  Sun,
+  Package,
+  Star,
+  ReceiptText,
+  Home,
+} from "lucide-react-native";
+import { cssInterop } from "nativewind";
 function interopIcon(icon: LucideIcon) {
   cssInterop(icon, {
     className: {
-      target: 'style',
+      target: "style",
       nativeStyleToProp: {
         color: true,
         opacity: true,
@@ -12,9 +21,13 @@ function interopIcon(icon: LucideIcon) {
     },
   });
 }
-
+interopIcon(Home);
+interopIcon(ReceiptText);
 interopIcon(Info);
+interopIcon(Cookie);
+interopIcon(Star);
 interopIcon(MoonStar);
 interopIcon(Sun);
+interopIcon(Package);
 
-export { Info, MoonStar, Sun };
+export { Home, ReceiptText, Info, Star, Cookie, MoonStar, Sun, Package };
