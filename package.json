@@ -1,8 +1,9 @@
 {
-  "name": "@rnr/starter-base",
-  "main": "index.js",
+  "name": "venz-media-cookies-demo",
+  "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
+    "start:wsl": "REACT_NATIVE_PACKAGER_HOSTNAME=$(netsh.exe interface ipv4 show addresses 'Wi-Fi' | awk -F'IP Address:' '{print $2}') expo start",
     "dev": "expo start -c --ios",
     "dev:web": "expo start -c --web",
     "dev:android": "expo start -c --android",
@@ -11,13 +12,20 @@
     "web": "expo start -c --web"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
+    "@gorhom/bottom-sheet": "^4.6.1",
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@react-native-async-storage/async-storage": "1.21.0",
     "@react-navigation/native": "^6.0.2",
+    "@shopify/flash-list": "1.6.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "expo": "~50.0.14",
+    "expo-image": "~1.10.6",
     "expo-linking": "~6.2.2",
     "expo-navigation-bar": "~2.8.1",
     "expo-router": "~3.4.8",
@@ -29,13 +37,16 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
+    "react-native-gesture-handler": "~2.14.0",
     "react-native-reanimated": "~3.6.2",
+    "react-native-reanimated-carousel": "^3.5.1",
     "react-native-svg": "14.1.0",
     "react-native-web": "~0.19.6",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
     "tailwindcss-animate": "^1.0.7",
-    "zustand": "^4.4.7"
+    "uuid": "^9.0.1",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

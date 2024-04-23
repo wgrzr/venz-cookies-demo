@@ -10,6 +10,7 @@ import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
 import { PortalHost } from "~/components/primitives/portal";
 import { ThemeToggle } from "~/components/ThemeToggle";
+import CustomHeader from "~/components/CustomHeader";
 
 const LIGHT_THEME: Theme = {
   dark: false,
@@ -25,10 +26,15 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
+export const unstable_settings = {
+  // Ensure any route can link back to `/`
+  initialRouteName: "index",
+};
+
 // Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+export default function Root() {
   const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
@@ -62,8 +68,15 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <Slot />
-    </ThemeProvider>
+    <>
+      <Stack>
+        <Stack.Screen
+          name="(tabs)"
+          options={{ header: () => <CustomHeader /> }}
+        />
+        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+      </Stack>
+      <PortalHost />
+    </>
   );
 }
