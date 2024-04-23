@@ -1,10 +1,11 @@
 import "~/global.css";
+import * as React from "react";
+import { useEffect } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Theme, ThemeProvider } from "@react-navigation/native";
 import { Slot, SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import * as React from "react";
 import { Platform } from "react-native";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
@@ -26,10 +27,10 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
-export const unstable_settings = {
-  // Ensure any route can link back to `/`
-  initialRouteName: "index",
-};
+// export const unstable_settings = {
+//   // Ensure any route can link back to `/`
+//   initialRouteName: "index",
+// };
 
 // Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();
@@ -38,7 +39,7 @@ export default function Root() {
   const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     (async () => {
       const theme = await AsyncStorage.getItem("theme");
       if (Platform.OS === "web") {
@@ -68,15 +69,8 @@ export default function Root() {
   }
 
   return (
-    <>
-      <Stack>
-        <Stack.Screen
-          name="(tabs)"
-          options={{ header: () => <CustomHeader /> }}
-        />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-      </Stack>
-      <PortalHost />
-    </>
+    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+      <Slot />
+    </ThemeProvider>
   );
 }

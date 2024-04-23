@@ -73,7 +73,7 @@ export default function HomeTab() {
           <Card className="w-full max-w-sm overflow-hidden">
             <Image
               source={require("~/assets/images/cookieStackBlueSm.jpg")}
-              // style={{ resizeMode: "cover", height: 300 }}
+              style={{ resizeMode: "cover", height: 300 }}
             />
             <CardHeader>
               <CardTitle>
