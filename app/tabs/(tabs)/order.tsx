@@ -1,52 +1,51 @@
 import * as React from "react";
-import { View } from "react-native";
-import Animated, {
-  FadeInUp,
-  FadeOutDown,
-  LayoutAnimationConfig,
-} from "react-native-reanimated";
-import { Info } from "~/components/Icons";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import { Button } from "~/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
-import { Progress } from "~/components/ui/progress";
-import { Text } from "~/components/ui/text";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "~/components/ui/tooltip";
+import { Image, ScrollView, View } from "react-native";
+import CategorySection from "~/components/CategorySection";
+import { MainCategorySection, CookieBase } from "~/assets/data/ordersPage";
+import { Button, Card, Text } from "~/components/ui";
 
-const COOKIE_STACK_IMG =
-  "https://images.unsplash.com/photo-1601349363349-ae09d3396d95?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-
-const DATA = [
-  {
-    title: "Cookies",
-    data: [
-      "Chocolate chip",
-      "Strawberry Cheesecake",
-      "Caramel Turtle",
-      "Fudge Founders",
-    ],
-  },
-  {
-    title: "Limited Time Only Cookies",
-    data: ["Potato with Beans Cookie", "Crab Cake Cookies", "Fried Shrimps"],
-  },
-];
-
-export default function Screen() {
+export default function OrderPage() {
   return (
-    <View className="flex-1 justify-center items-center gap-5 p-6 bg-secondary/30">
-      <Text>Order page</Text>
-    </View>
+    <ScrollView className="bg-[#f1f2f6] py-6">
+      {/* Promo Section */}
+      <View>
+        <View>
+          <Card className="flex-row h-40  mx-9 bg-[#cbc5f1] items-center mb-10 mt-6">
+            <View className="mr-10 rounded-full w-[100px] h-[100px] bg-white ml-10 flex items-center justify-center">
+              <Text>Promo Image</Text>
+            </View>
+            <View className="flex items-center justify-center ">
+              <View className="pb-2">
+                <Text className="text-amber-950 text-5xl font-bold">
+                  30% OFF
+                </Text>
+                <Text className="text-amber-950 text-2xl">
+                  SPECIAL FOR TODAY
+                </Text>
+              </View>
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full  bg-amber-950 "
+              >
+                <Text className="text-white">TASTE NOW</Text>
+              </Button>
+            </View>
+          </Card>
+          <View className="flex-row space-x-2 justify-center relative bottom-4">
+            <View className="w-2 h-2 rounded-full bg-gray-300 mx-1" />
+            <View className="w-2 h-2 rounded-full bg-gray-300 mx-1" />
+            <View className="w-2 h-2 rounded-full bg-gray-300 mx-1" />
+          </View>
+        </View>
+        <CategorySection
+          data={MainCategorySection}
+          title="CATEGORIES"
+          headerTitle
+          cardColor="#cbc5f1"
+        />
+        <CategorySection data={CookieBase} title="COOKIE BASE" />
+      </View>
+    </ScrollView>
   );
 }

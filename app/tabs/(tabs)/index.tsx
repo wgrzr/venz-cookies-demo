@@ -29,7 +29,7 @@ export default function HomeTab() {
     setProgress(Math.floor(Math.random() * 100));
   }
   return (
-    <ScrollView className="flex-1 bg-white">
+    <ScrollView className=" bg-white">
       {/* bg image */}
       <View className="flex-1 relative h-40 bg-white">
         <Image
@@ -77,7 +77,7 @@ export default function HomeTab() {
             />
             <CardHeader>
               <CardTitle>
-                <Text>Are you a Cookie Rewards Member?</Text>
+                <Text>Are You a Rewards Member?</Text>
               </CardTitle>
               <CardDescription>
                 Sign up for our Cookie Points loyalty program and get a free box

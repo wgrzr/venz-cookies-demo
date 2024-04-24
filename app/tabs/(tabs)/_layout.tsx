@@ -7,9 +7,6 @@ import {
 } from "~/components/Icons";
 import { Stack, Tabs } from "expo-router";
 import * as React from "react";
-import { ThemeToggle } from "~/components/ThemeToggle";
-import { ModalToggle } from "~/components/ModalToggle";
-import { useClientOnlyValue } from "~/components/useClientOnlyValue";
 import CustomHeader from "~/components/CustomHeader";
 
 const tabItemSpacing = 4;
@@ -19,8 +16,8 @@ export default function TabsLayout() {
     <Tabs
       screenOptions={{
         tabBarLabelPosition: "below-icon",
-        // headerShown: useClientOnlyValue(false, true),
-        header: () => <CustomHeader />,
+        // header: () => <CustomHeader />,
+        headerShown: false,
       }}
     >
       <Tabs.Screen

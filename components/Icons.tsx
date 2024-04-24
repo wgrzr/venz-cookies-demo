@@ -10,6 +10,8 @@ import {
   Home,
   CircleUserRound,
   ChevronDown,
+  Sliders,
+  Search,
 } from "lucide-react-native";
 import { cssInterop } from "nativewind";
 
@@ -24,7 +26,8 @@ function interopIcon(icon: LucideIcon) {
     },
   });
 }
-
+interopIcon(Sliders);
+interopIcon(Search);
 interopIcon(ChevronDown);
 interopIcon(CircleUserRound);
 interopIcon(Home);
@@ -37,6 +40,7 @@ interopIcon(Sun);
 interopIcon(Package);
 
 export {
+  Sliders,
   CircleUserRound,
   Home,
   ReceiptText,
@@ -47,4 +51,5 @@ export {
   Sun,
   Package,
   ChevronDown,
+  Search,
 };

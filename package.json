@@ -7,11 +7,12 @@
     "dev": "expo start -c --ios",
     "dev:web": "expo start -c --web",
     "dev:android": "expo start -c --android",
-    "android": "expo start -c --android",
-    "ios": "expo start -c --ios",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start -c --web"
   },
   "dependencies": {
+    "@clerk/clerk-expo": "^1.0.1",
     "@expo-google-fonts/inter": "^0.2.3",
     "@gluestack-style/react": "^1.0.53",
     "@gluestack-ui/themed": "^1.1.22",
