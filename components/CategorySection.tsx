@@ -4,6 +4,7 @@ import { ScrollView } from "react-native";
 import { cn } from "~/lib/utils";
 import { Link } from "expo-router";
 import { Card } from "~/components/ui";
+import { Container } from "~/components/Section";
 
 type CategoryItem = {
   name: string;
@@ -33,20 +34,17 @@ const CategoryCard = ({
 }) => (
   <Card
     className={cn(
-      "rounded-xl flex items-center justify-center mr-4 w-[150px] h-[190px] mb-4",
-      cardColor ? `bg-[${cardColor}]` : ""
+      "rounded-xl flex items-center justify-center mx-2 w-[150px] h-[200px] ",
+      cardColor ? `bg-[${cardColor}]` : "bg-white"
     )}
     {...props}
   >
-    <Image
-      source={{ uri: img }}
-      className="w-[100px] h-[100px] color-white invert-0"
-    />
+    <Image source={{ uri: img }} className="w-[100px] h-[100px] " />
     <Text>{name}</Text>
   </Card>
 );
 
-export default function CategorySection({
+export default function CategorySlider({
   data,
   title,
   headerTitle,
@@ -54,9 +52,9 @@ export default function CategorySection({
   ...props
 }: MainCategorySectionProps) {
   return (
-    <View className="mb-8 mx-4">
-      {/* Category Header*/}
-      <View className="px-4 pt-4 flex-row justify-between items-end">
+    <Container>
+      {/* Header*/}
+      <Container className="flex-row justify-between items-center">
         <Text
           className={cn(
             "text-[#380f0f] font-bold uppercase",
@@ -68,12 +66,11 @@ export default function CategorySection({
         <Link href={"/tabs/(tabs)/order"} className="text-xs">
           See All
         </Link>
-      </View>
+      </Container>
 
       {/* Category cards */}
-
       <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 15, paddingTop: 10 }}
+        contentContainerStyle={{ paddingHorizontal: 0, paddingVertical: 10 }}
         horizontal
         showsHorizontalScrollIndicator={false}
       >
@@ -86,6 +83,6 @@ export default function CategorySection({
           />
         ))}
       </ScrollView>
-    </View>
+    </Container>
   );
 }
