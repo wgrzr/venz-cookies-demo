@@ -7,7 +7,7 @@ export function ModalToggle({ size = 24 }: { size?: number }) {
   return (
     <Pressable
       onPress={() => {
-        router.push("/tabs/modal");
+        router.push("/(root)/(tabs)/(index)/signIn");
       }}
       className="web:ring-offset-background web:transition-colors web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2"
     >

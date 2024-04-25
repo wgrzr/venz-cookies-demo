@@ -16,7 +16,7 @@ export default function Home() {
         </Text>
       </View>
       <Button className="border-amber-950 bg-transparent border-2" size="sm">
-        <Link href="/tabs/(tabs)" className="text-lg font-bold">
+        <Link href="" className="text-lg font-bold">
           GET STARTED
         </Link>
       </Button>

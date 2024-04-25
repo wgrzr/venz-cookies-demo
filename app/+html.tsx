@@ -1,29 +1,44 @@
 import { ScrollViewStyleReset } from "expo-router/html";
-import type { PropsWithChildren } from "react";
+import React from "react";
 
-// This file is web-only and used to configure the root HTML for every
-// web page during static rendering.
-// The contents of this function only run in Node.js environments and
-// do not have access to the DOM or browser APIs.
-export default function Root({ children }: PropsWithChildren) {
+export default function Root({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
+      <head style={{ backgroundColor: "#F09458" }}>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1.00001,viewport-fit=cover"
         />
-
-        {/*
-          Disable body scrolling on web. This makes ScrollView components work closer to how they do on native.
-          However, body scrolling is often nice to have for mobile web. If you want to enable it, remove this line.
-        */}
         <ScrollViewStyleReset />
-
-        {/* Add any additional <head> elements that you want globally available on web... */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-title" content="Pillar Valley" />
+        <meta name="theme-color" content="#F09458" />
+        {/* Apple Smart Banner  */}
+        {/* replacing {ITUNES_ID} with your app's iTunes ID: */}
+        <meta name="apple-itunes-app" content="app-id={ITUNES_ID}" />
       </head>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `// use full screen on iOS PWAs
+      if (window.navigator.standalone === true) {
+        const html = document.getElementsByTagName("html")[0];
+        html.setAttribute("style", "height: 100vh;");
+      }
+
+      // Store the PWA prompt for custom prompting on Android and Chrome
+      window.deferredPWAInstallPrompt = null;
+      // https://web.dev/customize-install/
+      window.addEventListener("beforeinstallprompt", (e) => {
+        // Prevent the mini-infobar from appearing on mobile
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        window.deferredPWAInstallPrompt = e;
+      });`,
+        }}
+      />
+
       <body>{children}</body>
     </html>
   );
