@@ -2,15 +2,17 @@ import "~/global.css";
 import * as React from "react";
 import { useEffect } from "react";
 
+import * as SecureStore from "expo-secure-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Theme, ThemeProvider } from "@react-navigation/native";
 import { Slot, SplashScreen, Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { Platform } from "react-native";
 import { NAV_THEME } from "~/lib/constants";
 import { useColorScheme } from "~/lib/useColorScheme";
 import { PortalHost } from "~/components/primitives/portal";
-import { ThemeToggle } from "~/components/ThemeToggle";
+
+import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
+import Constants from "expo-constants";
 import CustomHeader from "~/components/CustomHeader";
 
 const LIGHT_THEME: Theme = {
@@ -27,13 +29,37 @@ export {
   ErrorBoundary,
 } from "expo-router";
 
-// export const unstable_settings = {
-//   // Ensure any route can link back to `/`
-//   initialRouteName: "index",
-// };
-
 // Prevent the splash screen from auto-hiding before getting the color scheme.
 SplashScreen.preventAutoHideAsync();
+
+const tokenCache = {
+  async getToken(key: string) {
+    try {
+      return SecureStore.getItemAsync(key);
+    } catch (err) {
+      return null;
+    }
+  },
+  async saveToken(key: string, value: string) {
+    try {
+      return SecureStore.setItemAsync(key, value);
+    } catch (err) {
+      return;
+    }
+  },
+};
+
+const InitialLayout = () => {
+  return (
+    <Stack>
+      <Stack.Screen name="(app)" options={{ header: () => <CustomHeader /> }} />
+      <Stack.Screen
+        name="signIn"
+        options={{ headerTitle: "Sign in", presentation: "modal" }}
+      />
+    </Stack>
+  );
+};
 
 export default function Root() {
   const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
@@ -69,8 +95,13 @@ export default function Root() {
   }
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <Slot />
-    </ThemeProvider>
+    <ClerkProvider
+      publishableKey={Constants.expoConfig!.extra!.clerkPublishableKey}
+      tokenCache={tokenCache}
+    >
+      {/* <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}> */}
+      <InitialLayout />
+      {/* </ThemeProvider> */}
+    </ClerkProvider>
   );
 }

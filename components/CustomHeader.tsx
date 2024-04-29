@@ -14,7 +14,7 @@ import { Input } from "./ui/input";
 
 export default function CustomHeader() {
   return (
-    <SafeAreaView className="">
+    <SafeAreaView className="bg-white">
       {/* Location dropdown */}
       <View className="flex mb-4">
         <View className="flex-row gap-[20px] justify-between items-center p-4 bg-white">

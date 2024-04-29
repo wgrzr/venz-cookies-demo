@@ -12,6 +12,7 @@ import {
   ChevronDown,
   Sliders,
   Search,
+  Gift,
 } from "lucide-react-native";
 import { cssInterop } from "nativewind";
 
@@ -26,6 +27,8 @@ function interopIcon(icon: LucideIcon) {
     },
   });
 }
+
+interopIcon(Gift);
 interopIcon(Sliders);
 interopIcon(Search);
 interopIcon(ChevronDown);
@@ -40,6 +43,7 @@ interopIcon(Sun);
 interopIcon(Package);
 
 export {
+  Gift,
   Sliders,
   CircleUserRound,
   Home,
